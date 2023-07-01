@@ -1,0 +1,46 @@
+
+app.component.html run at
+
+<button>update</button>
+<button class="mb-3">save</button>
+<button class="btn btn-success  mb-2">Submit</button>
+<button class="btn btn-primary mb-3">Submit 2</button>
+<button class="btn btn-danger">cancel</button>
+<i class="fa fa-edit"></i>
+<i class="fa fa-trash-o  mb-2 mr-5"></i>
+<i class="fa fa-eye fa 3x"  aria-hidden="true"></i>
+<i class="fa fa-camera-retro fa-lg "></i> 
+
+
+app component ts
+
+{
+    // this.abcd.success("sucess","User Master");
+    // this.abcd.info("Info sucess","User Master");
+    // this.abcd.warning("warning","User Master");
+    // this.abcd.error("error","User Master");
+    // Swal.fire('hello world')
+    // Swal.fire("Oops!", "Something went wrong!", "error");
+    // Swal.fire("WOW!", "done successfully!", "success");
+    Swal.fire({
+      title: "Are you sure?",
+      text: "Are you sure that you want to leave this record?",
+      icon: "warning",
+      showCancelButton:true,
+      confirmButtonText:"yes,delete it",
+      cancelButtonText:"so,keep it",
+    })
+    .then(result => {
+      if (result.value) {
+        Swal.fire(
+          "Deleted!",
+          "Your record has been deleted.",
+          "success"
+        );
+      } else if (result.dismiss === Swal.DismissReason.cancel) {
+        Swal.fire("Cancelled", "Your recordis safe :)", "error");
+      }
+    });
+  }}
+    
+

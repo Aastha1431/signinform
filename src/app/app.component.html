@@ -1,0 +1,126 @@
+<div  class ="card">
+    <h5 class="card-header card-header-color">User Registration</h5>
+    <div class="card-body">
+     <form [formGroup]="Regform" (ngSubmit)="onSubmit()">
+         <div class="row mb-3">
+         <div class="form-group col">
+             <label><b>Title</b></label>
+             <select class="form-control" formControlName="title" [ngClass]="{'is-valid':submitted && f['title'].errors}">
+                 <option value="Mr">Mr.</option>
+                 <option value="Mrs">Mrs.</option>
+                 <option value="Miss">Miss</option>
+                 <option value="Master">Ms</option>
+             </select>
+             <div *ngIf="submitted && f['title'].errors" class="invalid-Feedback">
+               <div *ngIf="f['title'].errors['required']">title is required
+</div>
+             </div>
+         </div>
+     
+         <div class="form-group col-5">
+             <label><b>Fname</b></label>
+             <input type="text" class="form-control" formControlName="firstName" [ngClass]="{'is-valid':submitted && f['firstName'].errors}" size="50"/> 
+             <div *ngIf="submitted && f['firstName'].errors" class="invalid-Feedback">
+                <div *ngIf="f['firstName'].errors['required']">firstName is required</div>
+                <div *ngIf="f['firstName'].errors['minlength']">firstName should be atleast 3 character long </div>
+                <div *ngIf="f['firstName'].errors['maxlength']">firstNameshould not be more than 10 character long</div>
+              </div>
+            </div>
+         
+         <div class="form-group col-5">
+             <label><b>Lname</b></label>
+             <input type="text" class="form-control" formControlName="lastName" [ngClass]="{'is-valid':submitted && f['lastName'].errors}"/>
+             <div *ngIf="submitted && f['lastName'].errors" class="invalid-Feedback">
+                <div *ngIf="f['lastName'].errors['required']">lastName is required</div>
+                <div *ngIf="f['lastName'].errors['minlength']">lastName should be atleast 2 character long </div>
+                <div *ngIf="f['lastName'].errors['maxlength']">lastName should not be more than 10 character long</div>
+</div>
+            </div>
+     </div>
+     <div class="row ">
+         <div class="form-group col-5 me-2">
+             <label><b>DOB</b></label>
+             <input type="date" class="form-control" formControlName="Dob" [ngClass]="{'is-valid':submitted && f['Dob'].errors}"/>
+         </div>
+         <div class="form-group col-5">
+             <label><b>Email</b></label>
+             <input type="email" class="form-control" formControlName="email" size="20" [ngClass]="{'is-valid':submitted && f['email'].errors}"/>
+             <div *ngIf="submitted && f['email'].errors" class="invalid-Feedback">
+                <div *ngIf="f['email'].errors['required']">email is required
+    </div>
+              </div>
+            </div>
+ 
+         <div class="row ">
+         <div class="form-group col-5 me-3 ">
+             <label><b>Password</b></label>
+             <input type="password" class="form-control" formControlName="password" [ngClass]="{'is-valid':submitted && f['password'].errors}"/>
+             <div *ngIf="submitted && f['password'].errors" class="invalid-Feedback">
+                <div *ngIf="f['password'].errors['required']">password is required
+    </div>
+              </div>
+            </div>
+         <div class="form-group col-5">
+             <label><b>Confirm Password</b></label>
+             <input type="password" class="form-control" formControlName="confirmPassword" [ngClass]="{'is-valid':submitted && f['confirmPassword'].errors}"/>
+             <div *ngIf="submitted && f['confirmPassword'].errors" class="invalid-Feedback">
+                <div *ngIf="f['confirmPassword'].errors['required']">confirmPassword is required
+    </div> <div *ngIf="f['confirmPassword'].errors['mustMatch']">confirmPassword is required not match with password
+    </div>
+              </div>
+            </div>
+         </div>
+     </div>
+     <div class="form-group col-sm-5 ">
+     <div class="box " >
+         <input id="checkbox" type="checkbox" formControlName="acceptTerms" [ngClass]="{'is-valid':submitted && f['acceptTerms'].errors}"/>
+         <label for="checkbox"> agree to these <a href="#">Terms and Conditions</a>.</label>
+         <div *ngIf="submitted && f['acceptTerms'].errors" class="invalid-Feedback">
+            <div *ngIf="f['acceptTerms'].errors['required']">acceptTerms is required
+</div>
+          </div>
+        </div>
+    </div>
+       <div class="row mb-2">
+         <div class="form-group text-center ">
+             <button  class="btn btn-success  me-2 mr-10px "><b>submit</b></button>
+       <button class="btn btn-danger  " (click)="onCancel()"><b>Cancel</b></button>
+         </div>
+       </div>
+       
+     </form>
+    </div>
+ </div>
+ <div  class ="card">
+     <h5 class="card-header card-header-list-color">User Entry</h5>
+     <div class="card-body">
+        <div class="form-row">
+            <div class="form-group col">
+                <table class="table table-striped">
+                    <tr>
+                        <th><b>Title</b></th>
+                        <th><b>FName</b></th>
+                        <th><b>LName</b></th>
+                        <th><b>DOB</b></th>
+                        <th><b>Email</b></th>
+                        <th><b>Actions</b></th>
+                    </tr>
+                    
+                    <tr *ngFor="let user of users">
+                        <td>{{(user.id)}}</td>
+                         <td>{{(user.title)}}</td>
+                         <td>{{(user.firstName)}}</td>
+                         <td>{{(user.lastName)}}</td>
+                         <td>{{(user.dob)}}</td>
+                         <td>{{(user.email)}}</td>
+                         
+<td>
+    <i class="fa fa-edit" style="color: rgb(5, 163, 84)" (click)="Edit(user.id)"></i>
+    <i class="fa trash-o" style="color: rgb(199, 5, 5)" (click)="Delete(user.id)"></i>
+</td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+     </div>
+   </div>
